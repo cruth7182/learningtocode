@@ -2,10 +2,12 @@
 
 """This program plays a game of Rock, Paper, Scissors between two Players,
 and reports both Player's scores each round."""
+
 #Please note: I consulted recommended sources from the Udacity Mentor in
-#this question that I posted:https://knowledge.udacity.com/questions/874836.
-#I tried to modify any knowledge gained from those sources to make it my own.
-#I also utilized the starter code provided by Udacity.
+#this question that I posted:
+#https://knowledge.udacity.com/questions/874836.
+#I tried to modify any knowledge gained from those sources to
+#make it my own. I also utilized the starter code provided by Udacity.
 
 import random
 import time
@@ -15,19 +17,8 @@ moves = ['rock', 'paper', 'scissors']
 
 
 def print_pause(message, delay=1):
-    typewriter(message)
+    print(message)
     time.sleep(delay)
-
-#Typewriter code originally posted in my first python project (the Adventure Game).
-#It was originally recommended by a Udacity Reviewer on that project. I have
-#modified it to make it more my own.
-def typewriter(message):
-    for char in message:
-        print(char, end='')
-        if char in string.punctuation:
-            time.sleep(.5)
-        time.sleep(.03)
-    print('')
 
 
 def valid_input(prompt, choices):
@@ -35,7 +26,7 @@ def valid_input(prompt, choices):
         choice = input(prompt).lower()
         if choice in choices:
             return choice
-        print(f'The option "{choice}" is wonky. Try again!')
+        print(f'What you entered, "{choice}", is wonky. Try again!')
 
 
 class Player:
@@ -59,7 +50,7 @@ class RandomPlayer(Player):
 
 class HumanPlayer(Player):
     def move(self):
-        return valid_input("Choose rock, paper, or scissors:\n", moves)
+        return valid_input("Choose rock, paper, or scissors:", moves)
 
 
 class ReflectPlayer(Player):
@@ -70,17 +61,23 @@ class ReflectPlayer(Player):
         self.my_move = their_move
 
 
-#I reviewed the following source for help with this part of the project:
-#https://knowledge.udacity.com/questions/836517#836525. I did this because it
-#was suggested by a Udacity mentor. I also read the following article online:
-#https://realpython.com/python-modulo-operator/#how-to-run-code-at-specific-intervals-in-a-loop
-#In the interest of avoiding plagiarism, here is my explanation of how it works.
-#The first if statement helps the CyclePlayer to make a random move on the first play.
-#The following line uses the index to cycle through the items in the moves list. It
-#begins with rock at position 0, and ends with scissors in position 2. Eventually 3%3
-#resets the index to 0. The next if statement uses the modulo to go through the
-#length of the moves list (each item), and the return makes the actual move.
-class CyclePlayer(Player):
+#I reviewed the following source for help with this part 
+#of the project:
+#https://knowledge.udacity.com/questions/836517#836525.
+#I did this because it was suggested by a Udacity mentor.
+#I also read the following article online:
+#https://realpython.com/python-modulo-operator/#how-to-run-
+#code-at-specific-intervals-in-a-loop
+#In the interest of avoiding plagiarism, here is my explanation
+#of how it works. The first if statement helps the CyclePlayer
+#make a random move on the first play.
+#The following line uses the index to cycle through the items
+#in the moves list. It begins with rock at position 0, and ends
+#with scissors in position 2. Eventually 3%3 resets the index
+#to 0. The next if statement uses the modulo to go through the
+#length of the moves list (each item), and the return makes
+#the actual move.
+class CyclicalPlayer(Player):
     def move(self):
         if self.my_move is None:
             return random.choice(moves)
@@ -146,7 +143,7 @@ class Game:
 
 if __name__ == '__main__':
     challengers = [RockOnlyPlayer(), RandomPlayer(), 
-                   CyclePlayer(), ReflectPlayer()]
+                   CyclicalPlayer(), ReflectPlayer()]
 
     p1 = HumanPlayer()
     p2 = random.choice(challengers)
