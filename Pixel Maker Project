@@ -1,0 +1,28 @@
+// Select color input
+var colorPicker = document.getElementById("colorPicker"); //sets the color as a value
+    colorPicker.addEventListener('input', function(event) {
+        event.preventDefault();
+    });
+// Select size input
+var inputHeight = document.getElementById("inputHeight"); //sets the height input to a value
+    
+var inputWidth = document.getElementById("inputWidth");  // sets the width input to a value
+    
+var chooseGridSize = document.getElementById("sizePicker");
+    sizePicker.addEventListener('submit', function(event) {
+        event.preventDefault();
+        makeGrid();
+});
+// When size is submitted by the user, call makeGrid()
+
+var table = document.getElementById("pixelCanvas");
+
+function makeGrid(){
+    for(var w = 0; w < inputWidth.value; w++); //'for' loop to create the rows of the table
+        row = table.insertRow();
+    for(var h = 0; h < inputHeight.value; h++); //'for' loop to create the columns/cells of the table
+        row.insertCell();
+            cell = colorPicker.value; //sets the cell color according to user's choice
+
+pixelCanvas.appendChild(makeGrid('cell'));
+};
